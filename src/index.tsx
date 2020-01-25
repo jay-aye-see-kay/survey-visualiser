@@ -4,13 +4,14 @@ import { configureStore } from '@reduxjs/toolkit';
 import { Provider } from 'react-redux';
 
 import { preloadedState, reducer } from 'store';
+import { Home } from 'Home';
 
 const store = configureStore({ preloadedState, reducer });
 
 const App = () => {
   return (
     <Provider store={store}>
-      <div> test </div>
+      <Home />
     </Provider>
   );
 }
