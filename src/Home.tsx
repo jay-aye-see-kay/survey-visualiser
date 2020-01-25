@@ -6,13 +6,13 @@ import { getSurvey, listSurveys } from 'store/thunks';
 export const Home = () => {
   const dispatch = useDispatch();
   React.useEffect(() => {
-    dispatch(listSurveys())
-    dispatch(getSurvey(2))
-  }, []);
+    dispatch(listSurveys());
+    dispatch(getSurvey(2));
+  }, [dispatch]);
 
   return (
     <div>
       test
     </div>
   );
-}
+};

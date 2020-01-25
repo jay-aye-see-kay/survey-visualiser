@@ -9,7 +9,7 @@ type ListSurveysFailure = PayloadAction<{ error: { message: string } }>;
 type SurveyListState = {
   loading: boolean;
   error?: { message: string };
-  data?: ListSurveysResponse
+  data?: ListSurveysResponse;
 };
 
 export const initialSurveyListState: SurveyListState = {
@@ -31,7 +31,7 @@ export const surveyListSlice = createSlice({
       state.loading = false;
       state.error = payload.error;
     },
-  }
+  },
 });
 
 export const surveyListSelectors = {};
