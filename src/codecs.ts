@@ -8,9 +8,6 @@ const SurveyResponseCodec = t.type({
 });
 
 const QuestionCodec = t.type({
-  id: t.number,
-  question_id: t.number,
-  respondent_id: t.number,
   description: t.string,
   question_type: t.string,
   survey_responses: t.array(SurveyResponseCodec),

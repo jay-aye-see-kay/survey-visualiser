@@ -2,13 +2,38 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { GetSurveysResponse } from 'codecs';
 
 
-type GetSurveySuccess = PayloadAction<GetSurveysResponse>;
-type GetSurveyFailure = PayloadAction<{ error: { message: string } }>;
+type Response = {
+  id: number;
+  questionId: number;
+  respondentId: number;
+  responseContent: string;
+};
+
+type Question = {
+  id: number;
+  themeName: string;
+  description: string;
+  questionType: string;
+};
+
+type Theme = {
+  name: string;
+};
+
+export type NormalizedSurvey = {
+  responses: Record<string, Response>;
+  questions: Record<string, Question>;
+  themes: Record<string, Theme>;
+};
+
+type GetSurveySuccess = PayloadAction<{ survey: GetSurveysResponse; normalizedSurvey: NormalizedSurvey }>;
+type GetSurveyFailure = PayloadAction<{ message: string }>;
 
 type SurveyState = {
   loading: boolean;
   error?: { message: string };
   data?: GetSurveysResponse;
+  normalizedData?: NormalizedSurvey;
 };
 
 export const initialSurveyState: SurveyState = {
@@ -24,11 +49,12 @@ export const surveySlice = createSlice({
     },
     getSurveySuccess: (state, { payload }: GetSurveySuccess) => {
       state.loading = false;
-      state.data = payload;
+      state.data = payload.survey;
+      state.normalizedData = payload.normalizedSurvey;
     },
     getSurveyFailure: (state, { payload }: GetSurveyFailure) => {
       state.loading = false;
-      state.error = payload.error;
+      state.error = payload;
     },
   },
 });

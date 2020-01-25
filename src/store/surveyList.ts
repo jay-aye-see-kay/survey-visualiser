@@ -4,7 +4,7 @@ import { ListSurveysResponse } from 'codecs';
 
 
 type ListSurveysSuccess = PayloadAction<ListSurveysResponse>;
-type ListSurveysFailure = PayloadAction<{ error: { message: string } }>;
+type ListSurveysFailure = PayloadAction<{ message: string }>;
 
 type SurveyListState = {
   loading: boolean;
@@ -29,7 +29,7 @@ export const surveyListSlice = createSlice({
     },
     listSurveysFailure: (state, { payload }: ListSurveysFailure) => {
       state.loading = false;
-      state.error = payload.error;
+      state.error = payload;
     },
   },
 });

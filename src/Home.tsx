@@ -7,7 +7,7 @@ export const Home = () => {
   const dispatch = useDispatch();
   React.useEffect(() => {
     dispatch(listSurveys());
-    dispatch(getSurvey(2));
+    dispatch(getSurvey(1));
   }, [dispatch]);
 
   return (
