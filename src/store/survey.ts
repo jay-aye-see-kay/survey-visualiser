@@ -62,9 +62,12 @@ export const surveySlice = createSlice({
 });
 
 export const surveySelectors = {
-  surveys: (state: State) => state.surveyList.data,
-  surveysMeta: (state: State) => ({
-    loading: state.surveyList.loading,
-    error: state.surveyList.error,
+  survey: (state: State) => ({ 
+    survey: state.survey.data,
+    normalizedSurvey: state.survey.normalizedData,
+  }),
+  surveyMeta: (state: State) => ({
+    loading: state.survey.loading,
+    error: state.survey.error,
   }),
 };
