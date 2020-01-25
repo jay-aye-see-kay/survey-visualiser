@@ -1,5 +1,7 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+
 import { GetSurveysResponse } from 'codecs';
+import { State } from 'store';
 
 
 type Response = {
@@ -59,4 +61,10 @@ export const surveySlice = createSlice({
   },
 });
 
-export const surveySelectors = {};
+export const surveySelectors = {
+  surveys: (state: State) => state.surveyList.data,
+  surveysMeta: (state: State) => ({
+    loading: state.surveyList.loading,
+    error: state.surveyList.error,
+  }),
+};
