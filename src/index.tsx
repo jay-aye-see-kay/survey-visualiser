@@ -8,7 +8,7 @@ import { preloadedState, reducer } from 'store';
 import { Home } from 'pages/Home';
 import { Survey } from 'pages/Survey';
 
-import 'style.css';
+import 'index.css';
 
 const store = configureStore({ preloadedState, reducer });
 
