@@ -18,7 +18,9 @@ export const QuestionCard: React.FC<{ question: Question }> = ({ question }) => 
         <GoQuote className="text-gray-200 flex-shrink-0 -mr-6" size="64" />
         <h3 className="max-w-lg">{question.description}</h3>
       </div>
-      <div className="flex flex-row justify-between mt-3 px-1">
+
+      {/* Tablet/Desktop layout */}
+      <div className="sm:flex hidden flex-row justify-between mt-3 px-1">
         <p><Badge>{format.float(stats.mean)}/5</Badge> Average response</p>
         <p>
           Response rate
@@ -26,6 +28,21 @@ export const QuestionCard: React.FC<{ question: Question }> = ({ question }) => 
           {responsePercent !== '100%' && <Badge className="ml-1">{responseFraction}</Badge>}
         </p>
       </div>
+
+      {/* Mobile layout */}
+      <div className="block sm:hidden mt-3 px-1 max-w-xs mx-auto">
+        <p className="mb-3 flex items-center justify-between">
+          Average response <Badge>{format.float(stats.mean)}/5
+          </Badge></p>
+        <p className="flex items-center justify-between">
+          Response rate
+          <div>
+            <Badge className="ml-1">{responsePercent}</Badge>
+            {responsePercent !== '100%' && <Badge className="ml-1">{responseFraction}</Badge>}
+          </div>
+        </p>
+      </div>
+
       <div className="mx-2 mt-6">
         <BoxAndWhisker {...stats} />
       </div>
