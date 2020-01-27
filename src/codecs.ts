@@ -1,10 +1,23 @@
 import * as t from 'io-ts';
 
+
+// this codec may seem overkill (c/w just using t.string) but now we can use
+// parseInt without being overly defensive
+const ResponseCodec = t.union([
+  t.literal(''),
+  t.literal('0'),
+  t.literal('1'),
+  t.literal('2'),
+  t.literal('3'),
+  t.literal('4'),
+  t.literal('5'),
+]);
+
 const SurveyResponseCodec = t.type({
   id: t.number,
   question_id: t.number,
   respondent_id: t.number,
-  response_content: t.string,
+  response_content: ResponseCodec,
 });
 
 const QuestionCodec = t.type({

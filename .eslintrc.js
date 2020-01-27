@@ -39,5 +39,8 @@ module.exports = {
     // this are super important so bumped from warnings to errors
     'react-hooks/rules-of-hooks': 'error',
     'react-hooks/exhaustive-deps': 'error',
+
+    // using TS, not needed
+    'react/prop-types': 'off',
   }
 };

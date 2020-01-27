@@ -3,7 +3,8 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import { selectors } from 'store';
 import { listSurveys } from 'store/thunks';
-import { NavBar, SurveyCard } from 'components';
+import { SurveyCard } from 'components/SurveyCard';
+import { NavBar } from 'components/NavBar';
 
 export const Home = () => {
   const dispatch = useDispatch();
