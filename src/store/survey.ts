@@ -29,11 +29,11 @@ export type NormalizedSurvey = {
 };
 
 type GetSurveySuccess = PayloadAction<{ survey: GetSurveysResponse; normalizedSurvey: NormalizedSurvey }>;
-type GetSurveyFailure = PayloadAction<{ message: string }>;
+type GetSurveyFailure = PayloadAction<string[]>;
 
 type SurveyState = {
   loading: boolean;
-  error?: { message: string };
+  errors?: string[];
   data?: GetSurveysResponse;
   normalizedData?: NormalizedSurvey;
 };
@@ -56,7 +56,7 @@ export const surveySlice = createSlice({
     },
     getSurveyFailure: (state, { payload }: GetSurveyFailure) => {
       state.loading = false;
-      state.error = payload;
+      state.errors = payload;
     },
   },
 });
@@ -68,6 +68,6 @@ export const surveySelectors = {
   }),
   surveyMeta: (state: State) => ({
     loading: state.survey.loading,
-    error: state.survey.error,
+    errors: state.survey.errors,
   }),
 };

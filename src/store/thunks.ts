@@ -5,6 +5,7 @@ import { isRight } from 'fp-ts/lib/Either';
 import { actions, State } from 'store';
 import { NormalizedSurvey } from 'store/survey';
 import { ListSurveysResponseCodec, GetSurveysResponseCodec, GetSurveysResponse } from 'codecs';
+import { logger } from 'helpers';
 
 
 const rootUrl = 'https://px2yf2j445.execute-api.us-west-2.amazonaws.com/production';
@@ -56,10 +57,14 @@ export const listSurveys = (): AppThunk => async dispatch => {
     if (isRight(decoded)) {
       dispatch(actions.listSurveysSuccess(decoded.right));
     } else {
-      dispatch(actions.listSurveysFailure({ message: 'invalid response'}));
+      dispatch(actions.listSurveysFailure(['Server error, this has been reported']));
+      logger.error('Invalid data from server', undefined, decoded.left);
     }
   } catch (error) {
-    dispatch(actions.listSurveysFailure({ message: 'unknown error'}));
+    const errors = ['Unknown error, this has been reported'];
+    if (error.message) { errors.push(error.message); }
+    dispatch(actions.listSurveysFailure(errors));
+    logger.error('Unknown error in thunk', error);
   }
 };
 
@@ -75,9 +80,13 @@ export const getSurvey = (id: number): AppThunk => async dispatch => {
         normalizedSurvey: normalizeSurvey(decoded.right),
       }));
     } else {
-      dispatch(actions.getSurveyFailure({ message: 'invalid response'}));
+      dispatch(actions.getSurveyFailure(['Server error, this has been reported']));
+      logger.error('Invalid data from server', undefined, decoded.left);
     }
   } catch (error) {
-    dispatch(actions.getSurveyFailure({ message: 'unknown error'}));
+    const errors = ['Unknown error, this has been reported'];
+    if (error.message) { errors.push(error.message); }
+    dispatch(actions.getSurveyFailure(errors));
+    logger.error('Unknown error in thunk', error);
   }
 };

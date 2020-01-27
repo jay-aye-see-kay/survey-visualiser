@@ -5,7 +5,7 @@ import { SurveyList, selectors } from 'store';
 import { listSurveys } from 'store/thunks';
 import { SurveyCard } from 'components/SurveyCard';
 import { NavBar } from 'components/NavBar';
-import { Loading } from 'components/Loading';
+import { LoadingGuard } from 'components/LoadingGuard';
 
 export const Home = () => {
   const dispatch = useDispatch();
@@ -13,16 +13,15 @@ export const Home = () => {
     dispatch(listSurveys());
   }, [dispatch]);
   const surveys = useSelector(selectors.surveyList);
-  const { loading, error } = useSelector(selectors.surveyListMeta);
+  const { loading, errors } = useSelector(selectors.surveyListMeta);
 
   return (
-    <div>
+    <>
       <NavBar isHome />
-      {loading || !surveys
-        ? <Loading />
-        : <ListView surveyList={surveys.survey_results} />
-      }
-    </div>
+      <LoadingGuard loading={loading} errors={errors}>
+        {surveys?.survey_results && <ListView surveyList={surveys.survey_results} />}
+      </LoadingGuard>
+    </>
   );
 };
 

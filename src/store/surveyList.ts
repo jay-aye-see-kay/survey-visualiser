@@ -5,11 +5,11 @@ import { State } from 'store';
 
 
 type ListSurveysSuccess = PayloadAction<ListSurveysResponse>;
-type ListSurveysFailure = PayloadAction<{ message: string }>;
+type ListSurveysFailure = PayloadAction<string[]>;
 
 type SurveyListState = {
   loading: boolean;
-  error?: { message: string };
+  errors?: string[];
   data?: ListSurveysResponse;
 };
 
@@ -30,7 +30,7 @@ export const surveyListSlice = createSlice({
     },
     listSurveysFailure: (state, { payload }: ListSurveysFailure) => {
       state.loading = false;
-      state.error = payload;
+      state.errors = payload;
     },
   },
 });
@@ -39,6 +39,6 @@ export const surveyListSelectors = {
   surveyList: (state: State) => state.surveyList.data,
   surveyListMeta: (state: State) => ({
     loading: state.surveyList.loading,
-    error: state.surveyList.error,
+    errors: state.surveyList.errors,
   }),
 };

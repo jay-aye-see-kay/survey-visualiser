@@ -5,7 +5,7 @@ import { useParams } from 'react-router-dom';
 import { SurveyDetail, selectors } from 'store';
 import { getSurvey } from 'store/thunks';
 import { NavBar } from 'components/NavBar';
-import { Loading } from 'components/Loading';
+import { LoadingGuard } from 'components/LoadingGuard';
 import { ThemeSection } from 'components/ThemeSection';
 import { format } from 'helpers';
 
@@ -18,16 +18,15 @@ export const Survey = () => {
   }, [id, dispatch]);
   const survey = useSelector(selectors.survey);
   const surveyDetail = survey?.survey?.survey_result_detail;
-  const { loading, error } = useSelector(selectors.surveyMeta);
+  const { loading, errors } = useSelector(selectors.surveyMeta);
 
   return (
-    <div>
+    <>
       <NavBar />
-      {loading || !surveyDetail
-        ? <Loading />
-        : <SurveyView surveyDetail={surveyDetail} />
-      }
-    </div>
+      <LoadingGuard loading={loading} errors={errors}>
+        {surveyDetail && <SurveyView surveyDetail={surveyDetail} />}
+      </LoadingGuard>
+    </>
   );
 };
 
