@@ -4,9 +4,9 @@ import { useParams } from 'react-router-dom';
 
 import { SurveyDetail, selectors } from 'store';
 import { getSurvey } from 'store/thunks';
-import { Card } from 'components/Card';
-import { QuestionCard } from 'components/QuestionCard';
 import { NavBar } from 'components/NavBar';
+import { Loading } from 'components/Loading';
+import { ThemeSection } from 'components/ThemeSection';
 import { format } from 'helpers';
 
 export const Survey = () => {
@@ -24,7 +24,7 @@ export const Survey = () => {
     <div className="max-w-2xl mx-auto">
       <NavBar />
       {loading || !surveyDetail
-        ? <div>loading...</div>
+        ? <Loading />
         : <SurveyView surveyDetail={surveyDetail} />
       }
     </div>
@@ -34,18 +34,13 @@ export const Survey = () => {
 const SurveyView: React.FC<{ surveyDetail: SurveyDetail }> = ({ surveyDetail }) => {
   return (
     <div>
-      <h2>{surveyDetail.name}</h2>
-      <p>Particpant count: {surveyDetail.participant_count}</p>
-      <p>Response rate: {format.percent(surveyDetail.response_rate)}</p>
+      <h1 className="text-3xl text-center mt-8 mb-2">Results of {surveyDetail.name}</h1>
+      <p className="text-gray-600 italic text-center max-w-md mx-auto mb-8">
+        A total of {surveyDetail.participant_count} participants have taken this survey, with a participation rate of {format.percent(surveyDetail.response_rate)}.
+      </p>
       {surveyDetail.themes.map(theme => (
-        <Card key={theme.name}>
-          <h3>Theme: {theme.name}</h3>
-          {theme.questions.map(question => (
-            <QuestionCard key={question.description} question={question} />
-          ))}
-        </Card>
+        <ThemeSection key={theme.name} theme={theme} />
       ))}
     </div>
   );
 };
-

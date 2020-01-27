@@ -9,6 +9,7 @@ export const preloadedState = {
   surveyList: initialSurveyListState,
 };
 export type State = typeof preloadedState;
+export type SurveyList = NonNullable<State['surveyList']['data']>['survey_results'];
 export type SurveyDetail = NonNullable<State['survey']['data']>['survey_result_detail'];
 export type Question = SurveyDetail['themes'][number]['questions'][number];
 

@@ -47,7 +47,7 @@ const round = (num: number, dp = 2) => {
 };
 
 export const format = {
-  int: (num: number) => round(num, 0).toFixed(0),
-  float: (num: number, dp = 2) => round(num, dp).toFixed(dp),
-  percent: (num: number, dp = 0) => round(num * 100, dp).toFixed(dp) + '%',
+  int: (num: number) => round(num, 0),
+  float: (num: number, dp = 2) => round(num, dp),
+  percent: (num: number, dp = 0) => round(num * 100, dp) + '%',
 };

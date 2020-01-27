@@ -1,7 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-import { Card } from 'components/Card';
+import { format } from 'helpers';
+import { Badge } from 'components/Badge';
 
 
 type Props = {
@@ -15,11 +16,13 @@ type Props = {
 export const SurveyCard = (props: Props) => {
   return (
     <Link to={props.to}>
-      <Card>
+      <div className="bg-gray-200 rounded shadow-md hover:shadow-lg smooth px-4 py-6 mt-4">
         <h3>{props.name}</h3>
-        <div>Particpation count:{props.participant_count}</div>
-        <div>Response rate: {Math.round(props.response_rate*100)}%</div>
-      </Card>
+        <div className="flex flex-row justify-between mt-3">
+          <p><Badge>{props.participant_count}</Badge> Particpant count</p>
+          <p>Response rate <Badge>{format.percent(props.response_rate)}</Badge></p>
+        </div>
+      </div>
     </Link>
   );
 };
