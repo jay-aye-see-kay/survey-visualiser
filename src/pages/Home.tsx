@@ -16,8 +16,8 @@ export const Home = () => {
   const { loading, error } = useSelector(selectors.surveyListMeta);
 
   return (
-    <div className="max-w-2xl mx-auto">
-      <NavBar />
+    <div>
+      <NavBar isHome />
       {loading || !surveys
         ? <Loading />
         : <ListView surveyList={surveys.survey_results} />
@@ -28,13 +28,13 @@ export const Home = () => {
 
 const ListView: React.FC<{ surveyList: SurveyList }> = ({ surveyList }) => {
   return (
-    <>
+    <div className="max-w-2xl mx-auto">
       <h1 className="text-3xl text-center my-8">
         {surveyList.length} survey result{surveyList.length !== 1 ? 's' : ''} to view
       </h1>
       {surveyList.map(survey => (
         <SurveyCard key={survey.name} to={survey.url} {...survey} />
       ))}
-    </>
+    </div>
   );
 };

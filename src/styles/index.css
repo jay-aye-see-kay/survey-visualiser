@@ -17,3 +17,7 @@
 .smooth {
   transition: all 200ms ease-in-out;
 }
+
+.grow-on-hover:hover {
+  transform: scale(1.05);
+}

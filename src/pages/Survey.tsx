@@ -21,7 +21,7 @@ export const Survey = () => {
   const { loading, error } = useSelector(selectors.surveyMeta);
 
   return (
-    <div className="max-w-2xl mx-auto">
+    <div>
       <NavBar />
       {loading || !surveyDetail
         ? <Loading />
@@ -33,7 +33,7 @@ export const Survey = () => {
 
 const SurveyView: React.FC<{ surveyDetail: SurveyDetail }> = ({ surveyDetail }) => {
   return (
-    <div>
+    <div className="max-w-2xl mx-auto">
       <h1 className="text-3xl text-center mt-8 mb-2">Results of {surveyDetail.name}</h1>
       <p className="text-gray-600 italic text-center max-w-md mx-auto mb-8">
         A total of {surveyDetail.participant_count} participants have taken this survey, with a participation rate of {format.percent(surveyDetail.response_rate)}.
