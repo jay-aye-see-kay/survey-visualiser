@@ -12,11 +12,10 @@ const getMean = (values: number[]) => {
   return values.reduce((sum, val) => sum += val, 0) / values.length;
 };
 
-// from: https://www.jstips.co/en/javascript/array-average-and-median/
-const getMedian = (values: number[]) => {
+const getQuartile = (values: number[], quartileFrac: number) => {
   const sorted = [...values].sort();
-  const lowMiddle = Math.floor((sorted.length - 1) / 2);
-  const highMiddle = Math.ceil((sorted.length - 1) / 2);
+  const lowMiddle = Math.floor((sorted.length - 1) * quartileFrac);
+  const highMiddle = Math.ceil((sorted.length - 1) * quartileFrac);
   return (sorted[lowMiddle] + sorted[highMiddle]) / 2;
 };
 
@@ -32,11 +31,11 @@ export const getStats = (surveyResponses: Question['survey_responses']) => {
     answeredCount: answered.length,
     totalCount: intResponses.length,
     mean: getMean(answered),
-    median: getMedian(answered),
+    median: getQuartile(answered, 0.5),
     min: Math.min(...answered),
     max: Math.max(...answered),
-    upperQuartile: 0, // TODO
-    lowerQuartile: 0, // TODO
+    upperQuartile: getQuartile(answered, 0.75),
+    lowerQuartile: getQuartile(answered, 0.25),
   };
 };
 

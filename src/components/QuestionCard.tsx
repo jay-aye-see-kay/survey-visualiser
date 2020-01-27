@@ -4,6 +4,7 @@ import { GoQuote } from 'react-icons/go';
 import { Question } from 'store';
 import { format, getStats } from 'helpers';
 import { Badge } from 'components/Badge';
+import { BoxAndWhisker } from 'components/BoxAndWhisker';
 
 
 export const QuestionCard: React.FC<{ question: Question }> = ({ question }) => {
@@ -24,6 +25,9 @@ export const QuestionCard: React.FC<{ question: Question }> = ({ question }) => 
           <Badge className="ml-1">{responsePercent}</Badge>
           {responsePercent !== '100%' && <Badge className="ml-1">{responseFraction}</Badge>}
         </p>
+      </div>
+      <div className="mx-2 mt-6">
+        <BoxAndWhisker {...stats} />
       </div>
     </div>
   );
