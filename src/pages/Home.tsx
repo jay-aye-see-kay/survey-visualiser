@@ -7,6 +7,7 @@ import { SurveyCard } from 'components/SurveyCard';
 import { NavBar } from 'components/NavBar';
 import { LoadingGuard } from 'components/LoadingGuard';
 
+
 export const Home = () => {
   const dispatch = useDispatch();
   React.useEffect(() => {

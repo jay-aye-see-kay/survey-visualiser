@@ -10,6 +10,7 @@ import { Survey } from 'pages/Survey';
 
 import 'index.css';
 
+
 const store = configureStore({ preloadedState, reducer });
 
 const App = () => {

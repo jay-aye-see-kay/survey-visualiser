@@ -9,6 +9,7 @@ import { LoadingGuard } from 'components/LoadingGuard';
 import { ThemeSection } from 'components/ThemeSection';
 import { format } from 'helpers';
 
+
 export const Survey = () => {
   const { id } = useParams<{ id?: string }>();
 
@@ -16,6 +17,7 @@ export const Survey = () => {
   React.useEffect(() => {
     id && dispatch(getSurvey(parseInt(id, 10)));
   }, [id, dispatch]);
+
   const survey = useSelector(selectors.survey);
   const surveyDetail = survey?.survey?.survey_result_detail;
   const { loading, errors } = useSelector(selectors.surveyMeta);

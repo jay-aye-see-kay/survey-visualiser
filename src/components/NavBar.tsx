@@ -19,7 +19,7 @@ export const NavBar: React.FC<Props> = ({ isHome }) => {
               </Link>
             )}
           </div>
-          <h2 className="uppercase text-xl">Survey review tool</h2>
+          <h2 className="uppercase text-xl">Survey visualiser</h2>
         </div>
       </div>
     </div>

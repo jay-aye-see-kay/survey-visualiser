@@ -13,7 +13,7 @@ type Props = {
   submitted_response_count: number;
 };
 
-export const SurveyCard = (props: Props) => {
+export const SurveyCard: React.FC<Props> = props => {
   return (
     <Link to={props.to}>
       <div className="bg-gray-200 rounded shadow-md hover:shadow-lg smooth px-4 py-6 mt-4">

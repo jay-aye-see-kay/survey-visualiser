@@ -2,6 +2,7 @@ import React from 'react';
 
 import { format } from 'helpers';
 
+
 type Props = {
   max: number;
   min: number;

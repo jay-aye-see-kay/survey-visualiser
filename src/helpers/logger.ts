@@ -24,4 +24,5 @@ const error = (message: string, error?: Error, data?: { [k: string]: any }) => {
   });
   console.groupEnd();
 };
+
 export const logger = { info, error };

@@ -28,7 +28,10 @@ export type NormalizedSurvey = {
   themes: Record<string, Theme>;
 };
 
-type GetSurveySuccess = PayloadAction<{ survey: GetSurveysResponse; normalizedSurvey: NormalizedSurvey }>;
+type GetSurveySuccess = PayloadAction<{
+  survey: GetSurveysResponse;
+  normalizedSurvey: NormalizedSurvey;
+}>;
 type GetSurveyFailure = PayloadAction<string[]>;
 
 type SurveyState = {

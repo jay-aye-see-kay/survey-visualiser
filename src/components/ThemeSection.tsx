@@ -3,7 +3,12 @@ import React from 'react';
 import { SurveyDetail } from 'store';
 import { QuestionCard } from 'components/QuestionCard';
 
-export const ThemeSection: React.FC<{ theme: SurveyDetail['themes'][number] }> = ({ theme }) => {
+
+type Props = {
+  theme: SurveyDetail['themes'][number];
+};
+
+export const ThemeSection: React.FC<Props> = ({ theme }) => {
   return (
     <div className="bg-gray-200 rounded my-4 p-4">
       <h3 className="text-xl">

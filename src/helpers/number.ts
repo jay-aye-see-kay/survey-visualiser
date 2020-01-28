@@ -21,7 +21,7 @@ const getQuartile = (values: number[], quartileFrac: number) => {
 
 export const getStats = (surveyResponses: Question['survey_responses']) => {
   const intResponses = surveyResponses.map(({ response_content }) =>
-    response_content === '' ? undefined : parseInt(response_content, 10)
+    !response_content ? undefined : parseInt(response_content, 10)
   );
 
   const answered = intResponses.filter(isNotNullOrUndefined);

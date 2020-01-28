@@ -1,6 +1,6 @@
 {
-  "name": "culture-amp-test",
-  "version": "0.1.0",
+  "name": "survey-visualiser",
+  "version": "1.0.0",
   "private": true,
   "dependencies": {
     "@fullhuman/postcss-purgecss": "^2.0.5",

@@ -7,7 +7,11 @@ import { Badge } from 'components/Badge';
 import { BoxAndWhisker } from 'components/BoxAndWhisker';
 
 
-export const QuestionCard: React.FC<{ question: Question }> = ({ question }) => {
+type Props = {
+  question: Question;
+};
+
+export const QuestionCard: React.FC<Props> = ({ question }) => {
   const stats = getStats(question.survey_responses);
   const responseFraction = `${format.int(stats.answeredCount)}/${format.int(stats.totalCount)}`;
   const responsePercent = format.percent(stats.answeredFraction);
@@ -36,10 +40,10 @@ export const QuestionCard: React.FC<{ question: Question }> = ({ question }) => 
           </Badge></p>
         <p className="flex items-center justify-between">
           Response rate
-          <div>
+          <span>
             <Badge className="ml-1">{responsePercent}</Badge>
             {responsePercent !== '100%' && <Badge className="ml-1">{responseFraction}</Badge>}
-          </div>
+          </span>
         </p>
       </div>
 
